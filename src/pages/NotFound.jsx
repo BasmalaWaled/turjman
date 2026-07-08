@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Home } from 'lucide-react';
+import PageShell from '../components/PageShell';
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-background dark:bg-darkBackground flex items-center justify-center">
-      <div className="text-center max-w-2xl mx-auto px-6">
+    <PageShell className="flex items-center justify-center" contentClassName="text-center max-w-2xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -28,8 +28,7 @@ const NotFound = () => {
             Back to Home
           </Link>
         </motion.div>
-      </div>
-    </div>
+      </PageShell>
   );
 };
 

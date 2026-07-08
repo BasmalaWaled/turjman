@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
+import PageShell from '../components/PageShell';
 
 const Privacy = () => {
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-background dark:bg-darkBackground">
-      <div className="max-w-4xl mx-auto px-6">
+    <PageShell contentClassName="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -117,8 +117,7 @@ const Privacy = () => {
             </section>
           </div>
         </motion.div>
-      </div>
-    </div>
+      </PageShell>
   );
 };
 

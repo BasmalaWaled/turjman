@@ -7,6 +7,7 @@ import FAQ from './pages/FAQ';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Contact from './pages/Contact';
+import Download from './pages/Download';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -21,6 +22,12 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/download" element={<Download />} />
+        <Route path="/pricing" element={<Download />} />
+        <Route path="/changelog" element={<Features />} />
+        <Route path="/blog" element={<Contact />} />
+        <Route path="/documentation" element={<Features />} />
+        <Route path="/tutorials" element={<FAQ />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

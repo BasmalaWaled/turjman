@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import PageShell from '../components/PageShell';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -45,8 +46,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-background dark:bg-darkBackground">
-      <div className="max-w-4xl mx-auto px-6">
+    <PageShell contentClassName="max-w-4xl mx-auto px-6">
         <div className="text-center mb-16">
           <h1 className="text-5xl lg:text-6xl font-bold text-text dark:text-white mb-6">
             Frequently Asked Questions
@@ -109,8 +109,7 @@ const FAQ = () => {
             Contact us
           </a>
         </div>
-      </div>
-    </div>
+      </PageShell>
   );
 };
 

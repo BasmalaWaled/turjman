@@ -1,21 +1,8 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, Check, Star, Play, Camera, Mic, Scan, FileText, MessageCircle, WifiOff, History, Heart, Zap, Lock, Moon, ChevronRight } from 'lucide-react';
+import FeaturesSection from '../components/FeaturesSection';
 
 const Home = () => {
-  const features = [
-    { icon: Zap, title: "AI Translation", desc: "Powered by cutting-edge AI for accurate, natural translations" },
-    { icon: Camera, title: "Camera Translation", desc: "Point your camera at text and translate instantly" },
-    { icon: Mic, title: "Voice Translation", desc: "Speak and get real-time voice-to-voice translation" },
-    { icon: Scan, title: "OCR Scanner", desc: "Extract text from images with high accuracy" },
-    { icon: FileText, title: "Document Translation", desc: "Translate entire documents while preserving formatting" },
-    { icon: MessageCircle, title: "Conversation Mode", desc: "Have seamless conversations across languages" },
-    { icon: WifiOff, title: "Offline Translation", desc: "Translate even without an internet connection" },
-    { icon: History, title: "History", desc: "Access all your past translations anytime" },
-    { icon: Heart, title: "Favorites", desc: "Save your most used translations for quick access" },
-    { icon: Zap, title: "Fast Performance", desc: "Lightning-fast translations with minimal latency" },
-    { icon: Lock, title: "Privacy First", desc: "Your data is encrypted and never shared" },
-    { icon: Moon, title: "Dark Mode", desc: "Easy on the eyes with beautiful dark theme" },
-  ];
 
   const testimonials = [
     { name: "Sarah Johnson", country: "USA", text: "Turjman has completely changed how I communicate when traveling.", rating: 5 },
@@ -119,7 +106,7 @@ const Home = () => {
             Trusted technologies powering Turjman
           </p>
           <div className="flex flex-wrap justify-center items-center gap-12 opacity-60">
-            {["Gemini AI", "Google ML Kit", "Firebase", "OCR", "Material Design"].map((tech, i) => (
+            {["Gemini AI", "Google ML Kit", "OCR", "Material Design"].map((tech, i) => (
               <span key={i} className="text-xl font-bold text-text dark:text-white">
                 {tech}
               </span>
@@ -128,41 +115,14 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="features" className="py-24 bg-background dark:bg-darkBackground">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-text dark:text-white mb-4">
-              Everything you need
-            </h2>
-            <p className="text-xl text-mutedText dark:text-gray-400 max-w-2xl mx-auto">
-              Powerful features designed to make translation effortless
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="bg-card dark:bg-gray-800 p-8 rounded-3xl border border-border dark:border-gray-700 hover:border-primary/50 transition-all shadow-sm hover:shadow-xl"
-              >
-                <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
-                  <feature.icon className="text-primary" size={28} />
-                </div>
-                <h3 className="text-xl font-bold text-text dark:text-white mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-mutedText dark:text-gray-400">
-                  {feature.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FeaturesSection
+        id="features"
+        title="Everything you need"
+        description="Powerful features designed to make translation effortless"
+        className="py-24 bg-background dark:bg-darkBackground"
+        titleClassName="text-4xl lg:text-5xl font-bold text-text dark:text-white mb-4"
+        descriptionClassName="text-xl text-mutedText dark:text-gray-400 max-w-2xl mx-auto"
+      />
 
       <section className="py-24 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import PageShell from '../components/PageShell';
+import PageHeader from '../components/PageHeader';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,25 +23,11 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-background dark:bg-darkBackground">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl lg:text-6xl font-bold text-text dark:text-white mb-6"
-          >
-            Get in Touch
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-xl text-mutedText dark:text-gray-400 max-w-2xl mx-auto"
-          >
-            Have questions or feedback? We'd love to hear from you.
-          </motion.p>
-        </div>
+    <PageShell contentClassName="max-w-7xl mx-auto px-6">
+        <PageHeader
+          title="Get in Touch"
+          description="Have questions or feedback? We'd love to hear from you."
+        />
 
         <div className="grid lg:grid-cols-2 gap-12">
           <motion.div
@@ -169,8 +157,7 @@ const Contact = () => {
             </form>
           </motion.div>
         </div>
-      </div>
-    </div>
+      </PageShell>
   );
 };
 
