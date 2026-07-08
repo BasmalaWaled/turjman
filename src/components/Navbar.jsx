@@ -6,21 +6,35 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window === 'undefined') return false;
+
+    const savedTheme = window.localStorage.getItem('theme');
+    if (savedTheme) return savedTheme === 'dark';
+
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle('dark', darkMode);
+    root.style.colorScheme = darkMode ? 'dark' : 'light';
+    window.localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Features', path: '/features' },
-    { name: 'Download', path: '/download' },
     { name: 'FAQ', path: '/faq' },
     { name: 'Privacy', path: '/privacy' },
     { name: 'Contact', path: '/contact' },
@@ -32,8 +46,8 @@ const Navbar = () => {
         ? 'bg-white/80 dark:bg-darkBackground/80 backdrop-blur-xl border-b border-border dark:border-gray-800 py-4'
         : 'bg-transparent py-6'
     }`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        <Link to="/" className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
           Turjman
         </Link>
 
@@ -58,10 +72,10 @@ const Navbar = () => {
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           <Link
-            to="/download"
+            to="/contact"
             className="px-6 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-full font-semibold hover:shadow-glow transition-all hover:-translate-y-0.5"
           >
-            Download App
+            Contact Us
           </Link>
         </div>
 
@@ -105,11 +119,11 @@ const Navbar = () => {
                 </Link>
               ))}
               <Link
-                to="/download"
+                to="/contact"
                 onClick={() => setIsOpen(false)}
                 className="px-6 py-3 bg-primary text-white rounded-full font-semibold text-center"
               >
-                Download App
+                Contact Us
               </Link>
             </div>
           </motion.div>

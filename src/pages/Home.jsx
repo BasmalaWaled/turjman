@@ -39,7 +39,7 @@ const Home = () => {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-3xl" />
         
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -50,7 +50,7 @@ const Home = () => {
                 <Star size={16} fill="currentColor" />
                 Loved by millions worldwide
               </div>
-              <h1 className="text-5xl lg:text-7xl font-bold text-text dark:text-white leading-tight mb-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-text dark:text-white leading-tight mb-6">
                 Translate Anything.
                 <br />
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -85,7 +85,7 @@ const Home = () => {
               className="relative"
             >
               <div className="relative z-10">
-                <div className="w-80 h-[600px] mx-auto bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl">
+                <div className="w-full max-w-[280px] sm:max-w-[320px] h-[480px] sm:h-[600px] mx-auto bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl">
                   <div className="w-full h-full bg-gradient-to-b from-primary/20 to-accent/20 rounded-[2.5rem] flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-6xl mb-4">🌍</div>
@@ -97,14 +97,14 @@ const Home = () => {
               <motion.div
                 animate={{ y: [0, -20, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-8 -left-8 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl"
+                className="hidden sm:block absolute -top-8 -left-8 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl"
               >
                 <Mic className="text-primary" size={24} />
               </motion.div>
               <motion.div
                 animate={{ y: [0, 20, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-8 -right-8 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl"
+                className="hidden sm:block absolute -bottom-8 -right-8 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl"
               >
                 <Camera className="text-accent" size={24} />
               </motion.div>
