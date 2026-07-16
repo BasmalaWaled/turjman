@@ -3,7 +3,7 @@ import { Apple, Smartphone, Check, Star } from 'lucide-react';
 
 const Download = () => {
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-background dark:bg-darkBackground">
+    <div className="min-h-screen pt-0 pb-24 bg-background dark:bg-darkBackground">
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
         <div className="relative max-w-7xl mx-auto px-6 py-20">

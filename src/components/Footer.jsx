@@ -1,78 +1,195 @@
-import { Link } from 'react-router-dom';
-import { Mail } from 'lucide-react';
-import { FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { Link } from "react-router-dom";
+import { Languages, Mail } from "lucide-react";
+import {
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+} from "react-icons/fa";
 
 const socialLinks = [
-  { href: 'https://x.com/', icon: FaTwitter, label: 'Twitter' },
-  { href: 'https://www.instagram.com/', icon: FaInstagram, label: 'Instagram' },
-  { href: 'https://www.linkedin.com/', icon: FaLinkedin, label: 'LinkedIn' },
-  { href: 'mailto:support@turjman.ai', icon: Mail, label: 'Email' },
+  {
+    href: "https://x.com/",
+    icon: FaTwitter,
+    label: "Twitter / X",
+  },
+  {
+    href: "https://instagram.com/",
+    icon: FaInstagram,
+    label: "Instagram",
+  },
+  {
+    href: "https://linkedin.com/",
+    icon: FaLinkedin,
+    label: "LinkedIn",
+  },
+  {
+    href: "https://youtube.com/",
+    icon: FaYoutube,
+    label: "YouTube",
+  },
+  {
+    href: "mailto:support@turjman.ai",
+    icon: Mail,
+    label: "Email",
+  },
 ];
 
 const Footer = () => {
   return (
-    <footer className="bg-darkBackground text-white py-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          <div className="lg:col-span-1">
-            <h3 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
-              Turjman
-            </h3>
-            <p className="text-gray-400 mb-6">
-              AI-powered translation for text, voice, images,and OCR.
+    <footer className="mt-24 w-full bg-[#0B1739] text-slate-400">
+
+      <div className="mx-auto max-w-7xl px-6 py-16">
+
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+
+          {/* Logo */}
+          <div>
+            <a
+              href="/"
+              className="flex items-center gap-3 text-white font-bold text-xl"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-cyan-400 shadow-lg shadow-blue-500/20">
+                <Languages size={18} />
+              </span>
+
+              <span>Turjman</span>
+            </a>
+
+            <p className="mt-6 max-w-xs leading-8 text-slate-400">
+              Breaking language barriers and making global communication
+              accessible to everyone, anywhere.
             </p>
-            <div className="flex gap-4">
+          </div>
+
+          {/* Services */}
+
+          <div>
+            <h3 className="mb-5 text-white font-semibold">
+              Services
+            </h3>
+
+            <div className="space-y-3">
+
+              <a href="/features" className="block hover:text-blue-400 transition">
+                Text Translation
+              </a>
+
+              <a href="/features" className="block hover:text-blue-400 transition">
+                Voice Mode
+              </a>
+
+              <a href="/features" className="block hover:text-blue-400 transition">
+                Camera Mode
+              </a>
+
+              <a href="/features" className="block hover:text-blue-400 transition">
+                Offline Packs
+              </a>
+
+              <a href="/features" className="block hover:text-blue-400 transition">
+                Live Conversation
+              </a>
+
+            </div>
+          </div>
+
+          {/* Links */}
+
+          <div>
+
+            <h3 className="mb-5 text-white font-semibold">
+              Links
+            </h3>
+
+            <div className="space-y-3">
+
+              <Link
+                to="/"
+                className="block hover:text-blue-400 transition"
+              >
+                Home
+              </Link>
+
+              <Link
+                to="/features"
+                className="block hover:text-blue-400 transition"
+              >
+                Features
+              </Link>
+
+              <Link
+                to="/faq"
+                className="block hover:text-blue-400 transition"
+              >
+                FAQ
+              </Link>
+
+              <Link
+                to="/privacy"
+                className="block hover:text-blue-400 transition"
+              >
+                Privacy Policy
+              </Link>
+
+              <Link
+                to="/terms"
+                className="block hover:text-blue-400 transition"
+              >
+                Terms of Use
+              </Link>
+
+            </div>
+
+          </div>
+
+          {/* Follow */}
+
+          <div>
+
+            <h3 className="mb-5 text-white font-semibold">
+              Follow Us
+            </h3>
+
+            <div className="space-y-3">
+
               {socialLinks.map(({ href, icon: Icon, label }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+                  className="flex items-center gap-3 hover:text-blue-400 transition"
                 >
-                  <Icon size={20} />
+                  <Icon size={17} />
+
+                  <span>{label}</span>
+
                 </a>
               ))}
+
             </div>
+
           </div>
 
-          <div>
-            <h4 className="font-semibold mb-4 text-lg">Product</h4>
-            <ul className="space-y-2">
-              <li><Link to="/features" className="text-gray-400 hover:text-white transition-colors">Features</Link></li>
-              <li><Link to="/download" className="text-gray-400 hover:text-white transition-colors">Download</Link></li>
-              <li><Link to="/pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</Link></li>
-              <li><Link to="/changelog" className="text-gray-400 hover:text-white transition-colors">Changelog</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4 text-lg">Resources</h4>
-            <ul className="space-y-2">
-              <li><Link to="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
-              <li><Link to="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
-              <li><Link to="/documentation" className="text-gray-400 hover:text-white transition-colors">Documentation</Link></li>
-              <li><Link to="/tutorials" className="text-gray-400 hover:text-white transition-colors">Tutorials</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4 text-lg">Legal</h4>
-            <ul className="space-y-2">
-              <li><Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link to="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</Link></li>
-              <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
-            </ul>
-          </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8">
-          <p className="text-gray-500 text-center">
+        {/* Bottom */}
+
+        <div className="mt-14 border-t border-slate-700 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+
+          <p>
             © {new Date().getFullYear()} Turjman. All rights reserved.
           </p>
+
+          <p>
+            Breaking language barriers worldwide.
+          </p>
+
         </div>
+
       </div>
+
     </footer>
   );
 };

@@ -1,6 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import Home from './pages/Home';
 import Features from './pages/Features';
 import FAQ from './pages/FAQ';
@@ -9,12 +7,11 @@ import Terms from './pages/Terms';
 import Contact from './pages/Contact';
 import Download from './pages/Download';
 import NotFound from './pages/NotFound';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background dark:bg-darkBackground text-text dark:text-white">
-      <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/features" element={<Features />} />
