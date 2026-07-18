@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+﻿﻿import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, ShieldCheck, ClipboardCheck, ShieldAlert } from 'lucide-react';
 import PageShell from '../components/PageShell';
@@ -224,4 +224,3 @@ return (
 }
 
 export default Terms;
-

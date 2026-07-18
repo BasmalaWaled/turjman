@@ -16,6 +16,16 @@
   --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.3);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   margin: 0;
   font-family: 'Inter', 'Cairo', sans-serif;

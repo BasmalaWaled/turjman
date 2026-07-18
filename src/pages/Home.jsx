@@ -1,5 +1,6 @@
 ﻿
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   CameraIcon,
   ChevronDown,
@@ -10,6 +11,13 @@ import {
   Volume2,
   Zap,
 } from 'lucide-react';
+import {
+  FadeIn,
+  FadeInOnLoad,
+  Float,
+  StaggerContainer,
+  StaggerItem,
+} from '../components/AnimateOnScroll';
 
 const features = [
   {
@@ -17,39 +25,44 @@ const features = [
     description: 'From a single word to full documents — 100+ languages, context-aware AI.',
     type: 'photo',
     side: 'right',
+    image: 'img1.png',
   },
   {
     title: 'Speak. Listen. Understand.',
     description: 'Real-time voice recognition tuned for accents and natural speech patterns.',
     type: 'conversation',
     side: 'left',
+    image: 'img3.png',
   },
   {
     title: 'Point, Shoot, Read Anything',
     description: 'AR overlay translates signs, menus, and labels instantly through your camera.',
     type: 'camera',
     side: 'right',
+    image: 'img4.png',
   },
   {
     title: 'Unlock Text in Any Photo',
     description: 'Upload screenshots or photos — every word extracted and translated accurately.',
     type: 'photo',
     side: 'left',
+    image: 'img5.png',
   },
   {
     title: 'Two Languages, One Conversation',
     description: 'Translate live discussions without losing the natural flow of the exchange.',
     type: 'conversation',
     side: 'right',
+    image: 'img6.png',
   },
   {
     title: 'No Signal? No Problem.',
     description: 'Download language packs and keep translating anywhere, even without internet.',
     type: 'languages',
     side: 'left',
+    image: 'img7.png',
   },
 ];
-
 const faqs = [
   'Is Turjman free to use?',
   'Which languages does Turjman support?',
@@ -129,262 +142,370 @@ function SectionLabel({ children }) {
   );
 }
 
+const navItems = [
+  { name: 'Features', id: 'features' },
+  { name: 'About', id: 'about' },
+  { name: 'FAQ', id: 'faq' },
+  { name: 'Testimonials', id: 'testimonials' },
+  { name: 'Download', id: 'download' },
+];
+
+function scrollToSection(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 export default function Index() {
   const [openFaq, setOpenFaq] = useState(null);
 
   return (
     <main className="min-h-screen overflow-hidden bg-linear-to-br from-slate-50 via-white to-blue-50 text-slate-900">
-      <div className="mx-auto max-w-7xl px-5 pb-20 sm:px-6 lg:px-8">
-        <header className="flex items-center justify-between gap-4 py-6">
-          <a className="flex items-center gap-3 text-[15px] font-extrabold text-slate-900" href="#top">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-cyan-400 text-white shadow-lg shadow-blue-200">
-              <Languages size={17} />
-            </span>
-            <span>Turjman</span>
-          </a>
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <FadeInOnLoad delay={0.1}>
+          <header className="flex items-center justify-between gap-4 py-6">
+            <button
+              type="button"
+              className="flex items-center gap-3 text-[15px] font-extrabold text-slate-900"
+              onClick={() => scrollToSection('top')}
+            >
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-cyan-400 text-white shadow-lg shadow-blue-200">
+                <Languages size={17} />
+              </span>
+              <span>Turjman</span>
+            </button>
 
-          <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-600 md:flex">
-            <a href="#features" className="transition hover:text-blue-600">Features</a>
-            <a href="#about" className="transition hover:text-blue-600">About</a>
-            <a href="#faq" className="transition hover:text-blue-600">FAQ</a>
-            <a href="#testimonials" className="transition hover:text-blue-600">Testimonials</a>
-            <a href="#download" className="transition hover:text-blue-600">Download</a>
-          </nav>
+            <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-600 md:flex">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className="transition hover:text-blue-600"
+                  onClick={() => scrollToSection(item.id)}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </nav>
 
-          <a className="rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-600 shadow-sm transition hover:-translate-y-0.5 hover:bg-blue-50" href="#download">
-            Get the app
-          </a>
-        </header>
+            <motion.button
+              type="button"
+              className="rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-600 shadow-sm transition hover:bg-blue-50"
+              onClick={() => scrollToSection('download')}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Get the app
+            </motion.button>
+          </header>
+        </FadeInOnLoad>
 
         <section id="top" className="py-10 text-center md:py-16">
-          <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-blue-600">
-            <Zap size={12} />
-            AI-Powered · 100+ Languages
-          </div>
+          <FadeInOnLoad delay={0.15}>
+            <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-blue-600">
+              <Zap size={12} />
+              AI-Powered · 100+ Languages
+            </div>
+          </FadeInOnLoad>
 
-          <h1 className="mx-auto max-w-4xl text-4xl font-black leading-[0.95] tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-6xl">
-            Smart Translation
-            <br />
-            <em className="text-blue-600 not-italic">Application</em>
-          </h1>
+          <FadeInOnLoad delay={0.25}>
+            <h1 className="mx-auto max-w-4xl text-4xl font-black leading-[0.95] tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-6xl">
+              Smart Translation
+              <br />
+              <em className="text-blue-600 not-italic">Application</em>
+            </h1>
+          </FadeInOnLoad>
 
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-            Turjman breaks language barriers with text, voice, camera, image, and live conversation translation — all in one app.
+          <FadeInOnLoad delay={0.35}>
+            <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+              Turjman breaks language barriers with text, voice, camera, image, and live conversation translation — all in one app.
+            </p>
+          </FadeInOnLoad>
+
+          <FadeInOnLoad delay={0.45}>
+            <div className="mt-7 flex flex-wrap justify-center gap-3">
+              <motion.button
+                type="button"
+                onClick={() => scrollToSection('download')}
+                className="flex items-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-left text-white shadow-lg shadow-slate-300"
+                whileHover={{ y: -3, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="text-lg"></span>
+                <span>
+                  <small className="block text-[8px] uppercase opacity-70">Download on the</small>
+                  <strong className="block text-sm font-semibold">App Store</strong>
+                </span>
+              </motion.button>
+              <motion.button
+                type="button"
+                onClick={() => scrollToSection('download')}
+                className="flex items-center gap-2 rounded-2xl bg-blue-600 px-4 py-3 text-left text-white shadow-lg shadow-blue-200"
+                whileHover={{ y: -3, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Play size={13} fill="currentColor" />
+                <span>
+                  <small className="block text-[8px] uppercase opacity-80">GET IT ON</small>
+                  <strong className="block text-sm font-semibold">Google Play</strong>
+                </span>
+              </motion.button>
+            </div>
+          </FadeInOnLoad>
+
+          <FadeInOnLoad delay={0.6}>
+            <Float className="mt-10 flex justify-center">
+              <img
+                src={`${import.meta.env.BASE_URL}image/hero-phones.png`}
+                alt="Turjman translation app"
+                className="w-full max-w-[850px] object-contain"
+              />
+            </Float>
+          </FadeInOnLoad>
+        </section>
+
+     <section id="features" className="mx-auto max-w-5xl py-12 md:py-20">
+  <FadeIn>
+    <SectionLabel>FEATURES</SectionLabel>
+    <h2 className="mt-3 text-center text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">
+      Every Way You Communicate
+    </h2>
+  </FadeIn>
+
+  <div className="mt-8 space-y-8 sm:space-y-10 md:space-y-12">
+    {features.map((feature, index) => (
+     <FadeIn
+  key={feature.title}
+  delay={index * 0.05}
+  direction={feature.side === 'right' ? 'left' : 'right'}
+>
+     <article
+  className={`grid grid-cols-2 items-center gap-3 sm:gap-6 md:gap-8 ${
+    feature.side === 'right'
+      ? "[&>*:first-child]:order-2 [&>*:last-child]:order-1"
+      : ""
+  }`}
+>
+        <div className="space-y-2 sm:space-y-4">
+          <h3 className="text-sm font-black leading-tight text-slate-900 sm:text-xl md:text-2xl">
+            {feature.title}
+          </h3>
+
+          <p className="text-[11px] leading-5 text-slate-600 sm:text-sm sm:leading-7 md:max-w-md">
+            {feature.description}
           </p>
 
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <a href="#download" className="flex items-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-left text-white shadow-lg shadow-slate-300">
-              <span className="text-lg"></span>
-              <span>
-                <small className="block text-[8px] uppercase opacity-70">Download on the</small>
-                <strong className="block text-sm font-semibold">App Store</strong>
-              </span>
-            </a>
-            <a href="#download" className="flex items-center gap-2 rounded-2xl bg-blue-600 px-4 py-3 text-left text-white shadow-lg shadow-blue-200">
-              <Play size={13} fill="currentColor" />
-              <span>
-                <small className="block text-[8px] uppercase opacity-80">GET IT ON</small>
-                <strong className="block text-sm font-semibold">Google Play</strong>
-              </span>
-            </a>
-          </div>
+          <motion.button
+            type="button"
+            className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-2.5 py-1.5 text-[10px] font-semibold text-white sm:gap-2 sm:px-4 sm:py-2 sm:text-sm"
+            onClick={() => scrollToSection('download')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <Play size={12} fill="currentColor" className="sm:hidden" />
+            <Play size={15} fill="currentColor" className="hidden sm:block" />
+            LIVE DEMO
+          </motion.button>
+        </div>
 
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Phone type="photo" className="-rotate-6" />
-            <Phone type="conversation" className="z-10 scale-110" />
-            <Phone type="camera" className="rotate-6" />
-          </div>
-        </section>
-
-        <section id="features" className="mx-auto max-w-5xl py-12 md:py-20">
-          <SectionLabel>FEATURES</SectionLabel>
-          <h2 className="mt-3 text-center text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">
-            Every Way You Communicate
-          </h2>
-
-          <div className="mt-8 space-y-6">
-            {features.map((feature, index) => (
-              <article
-                className={`grid items-center gap-8 rounded-[32px] border border-slate-200/80 bg-white/80 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur md:grid-cols-2 md:p-8 ${index % 2 === 1 ? 'md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1' : ''}`}
-                key={feature.title}
-              >
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-black tracking-[-0.02em] text-slate-900">{feature.title}</h3>
-                  <p className="max-w-md text-sm leading-7 text-slate-600">{feature.description}</p>
-                  <a className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-200" href="#download">
-                    <Play size={15} fill="currentColor" />
-                    LIVE DEMO
-                  </a>
-                </div>
-                <div className="flex justify-center">
-                  <Phone type={feature.type} />
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
+        <motion.div
+          className="flex justify-center"
+          whileHover={{ scale: 1.03 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        >
+          <img
+            src={`${import.meta.env.BASE_URL}image/${feature.image}`}
+            alt={feature.title}
+            className="w-full max-w-[130px] object-contain sm:max-w-[280px] md:max-w-[850px]"
+          />
+        </motion.div>
+      </article>
+</FadeIn>
+    ))}
+  </div>
+</section>
 
         <section id="about" className="mx-auto max-w-5xl py-12 md:py-20">
-          <SectionLabel>ABOUT US</SectionLabel>
-          <h2 className="mt-3 text-center text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">
-            Breaking Language Barriers Worldwide
-          </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-center text-sm leading-7 text-slate-600 sm:text-base">
-            Turjman is an AI-powered translation app built for seamless multilingual communication. Whether you're traveling, studying, or working globally — Turjman understands and translates instantly across text, voice, camera, image, and live conversation.
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <FadeIn>
+            <SectionLabel>ABOUT US</SectionLabel>
+            <h2 className="mt-3 text-center text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">
+              Breaking Language Barriers Worldwide
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-center text-sm leading-7 text-slate-600 sm:text-base">
+              Turjman is an AI-powered translation app built for seamless multilingual communication. Whether you're traveling, studying, or working globally — Turjman understands and translates instantly across text, voice, camera, image, and live conversation.
+            </p>
+          </FadeIn>
+          <StaggerContainer className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.1}>
             {[
               ['100+', 'Languages'],
               ['50M+', 'Successful Talks'],
               ['4.9★', 'App Rating'],
               ['190+', 'Countries'],
             ].map(([value, label]) => (
-              <div key={label} className="rounded-2xl border border-slate-200 bg-white/80 px-5 py-6 text-center shadow-sm">
-                <div className="text-2xl font-black text-blue-600">{value}</div>
-                <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">{label}</div>
-              </div>
+              <StaggerItem key={label}>
+                <motion.div
+                  className="rounded-2xl border border-slate-200 bg-white/80 px-5 py-6 text-center shadow-sm"
+                  whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(37, 99, 235, 0.12)' }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                >
+                  <div className="text-2xl font-black text-blue-600">{value}</div>
+                  <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">{label}</div>
+                </motion.div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </section>
 
         <section id="faq" className="mx-auto max-w-3xl py-12 md:py-20">
-          <SectionLabel>FAQ</SectionLabel>
-          <h2 className="mt-3 text-center text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">
-            Frequently Asked Questions
-          </h2>
+          <FadeIn>
+            <SectionLabel>FAQ</SectionLabel>
+            <h2 className="mt-3 text-center text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">
+              Frequently Asked Questions
+            </h2>
+          </FadeIn>
 
-          <div className="mt-8 rounded-[24px] border border-slate-200 bg-white/80 p-2 shadow-[0_20px_50px_rgba(15,23,42,0.06)]">
-            {faqs.map((faq, index) => (
-              <div key={faq} className="border-b border-slate-100 last:border-b-0">
-                <button
-                  className="flex w-full items-center justify-between px-4 py-4 text-left text-sm font-semibold text-slate-700"
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                >
-                  <span>{faq}</span>
-                  <ChevronDown size={14} className={`transition ${openFaq === index ? 'rotate-180' : ''}`} />
-                </button>
-                {openFaq === index && (
-                  <p className="px-4 pb-4 text-sm leading-7 text-slate-600">
-                    {index === 0
-                      ? 'Yes, Turjman includes a generous free plan so you can translate wherever you go.'
-                      : 'Turjman supports more than 100 languages across text, voice, camera, and conversation modes.'}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
+          <FadeIn delay={0.15}>
+            <div className="mt-8 rounded-[24px] border border-slate-200 bg-white/80 p-2 shadow-[0_20px_50px_rgba(15,23,42,0.06)]">
+              {faqs.map((faq, index) => (
+                <div key={faq} className="border-b border-slate-100 last:border-b-0">
+                  <button
+                    className="flex w-full items-center justify-between px-4 py-4 text-left text-sm font-semibold text-slate-700"
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  >
+                    <span>{faq}</span>
+                    <motion.span
+                      animate={{ rotate: openFaq === index ? 180 : 0 }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <ChevronDown size={14} />
+                    </motion.span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {openFaq === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="px-4 pb-4 text-sm leading-7 text-slate-600">
+                          {index === 0
+                            ? 'Yes, Turjman includes a generous free plan so you can translate wherever you go.'
+                            : 'Turjman supports more than 100 languages across text, voice, camera, and conversation modes.'}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
         </section>
 
         <section id="testimonials" className="mx-auto max-w-6xl py-12 md:py-20">
-          <SectionLabel>TESTIMONIALS</SectionLabel>
-          <h2 className="mt-3 text-center text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">
-            What Our Users Say
-          </h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <FadeIn>
+            <SectionLabel>TESTIMONIALS</SectionLabel>
+            <h2 className="mt-3 text-center text-3xl font-black tracking-[-0.02em] text-slate-900 sm:text-4xl">
+              What Our Users Say
+            </h2>
+          </FadeIn>
+          <StaggerContainer className="mt-8 grid gap-4 md:grid-cols-3" stagger={0.15}>
             {testimonials.map(([name, role, quote], index) => (
-              <article key={`${name}-${index}`} className="rounded-[24px] border border-slate-200 bg-white/80 p-5 shadow-sm">
-                <div className="flex gap-1 text-yellow-400">
-                  {Array.from({ length: 5 }).map((_, starIndex) => (
-                    <Star key={starIndex} size={11} fill="currentColor" />
-                  ))}
-                </div>
-                <p className="mt-3 text-sm leading-7 text-slate-600">“{quote}”</p>
-                { <footer className="mt-4 flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-sm font-black text-blue-700">
-                    {name.charAt(0)}
+              <StaggerItem key={`${name}-${index}`}>
+                <motion.article
+                  className="rounded-[24px] border border-slate-200 bg-white/80 p-5 shadow-sm"
+                  whileHover={{ y: -5, boxShadow: '0 16px 40px rgba(15, 23, 42, 0.08)' }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                >
+                  <div className="flex gap-1 text-yellow-400">
+                    {Array.from({ length: 5 }).map((_, starIndex) => (
+                      <Star key={starIndex} size={11} fill="currentColor" />
+                    ))}
                   </div>
-                  <div>
-                    <div className="text-sm font-semibold text-slate-900">{name}</div>
-                    <div className="text-xs text-slate-500">{role}</div>
-                  </div>
-                </footer> }
-              </article>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">“{quote}”</p>
+                  <footer className="mt-4 flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-sm font-black text-blue-700">
+                      {name.charAt(0)}
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-slate-900">{name}</div>
+                      <div className="text-xs text-slate-500">{role}</div>
+                    </div>
+                  </footer>
+                </motion.article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </section>
 
-       <section
+  <section
   id="download"
-  className="mx-auto max-w-7xl px-6 py-24 lg:px-10"
+  className="mx-auto max-w-7xl px-6 pt-24 pb-0 lg:px-10"
 >
-  <SectionLabel>DOWNLOAD</SectionLabel>
+  <FadeIn>
+    <SectionLabel>DOWNLOAD</SectionLabel>
+  </FadeIn>
 
-  <div className="mt-12 grid items-center gap-16 lg:grid-cols-2">
-
-    {/* Left */}
-    <div>
-      <h2 className="text-6xl font-black leading-none text-slate-900">
+  <div className="mt-12 flex items-center gap-6">
+    <FadeIn direction="left" className="w-1/2">
+      <h2 className="text-4xl font-black leading-none text-slate-900 sm:text-6xl">
         Download
         <br />
         App
       </h2>
 
-      <p className="mt-8 max-w-md text-lg leading-9 text-slate-500">
+      <p className="mt-8 max-w-md text-sm leading-7 text-slate-500 sm:text-lg sm:leading-9">
         Get Turjman on iOS and Android.
         Translate your first conversation
         in under 30 seconds — free forever.
       </p>
 
-      {/* Buttons */}
-      <div className="mt-10 flex gap-4">
-
-        <a
+      <div className="mt-8 flex flex-wrap gap-3">
+        <motion.a
           href="#"
-          className="rounded-xl bg-black px-7 py-4 text-white shadow-lg transition hover:scale-105"
+          className="rounded-xl bg-black px-4 py-3 text-sm text-white shadow-lg sm:px-7 sm:py-4 sm:text-lg"
+          whileHover={{ y: -3, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <div className="text-lg font-semibold">
-            App Store
-          </div>
-        </a>
+          App Store
+        </motion.a>
 
-        <a
+        <motion.a
           href="#"
-          className="rounded-xl bg-blue-600 px-7 py-4 text-white shadow-xl shadow-blue-300 transition hover:scale-105"
+          className="rounded-xl bg-blue-600 px-4 py-3 text-sm text-white shadow-xl shadow-blue-300 sm:px-7 sm:py-4 sm:text-lg"
+          whileHover={{ y: -3, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <div className="text-lg font-semibold">
-            Google Play
-          </div>
-        </a>
-
+          Google Play
+        </motion.a>
       </div>
 
-      {/* Features */}
+      <StaggerContainer className="mt-8 space-y-3 text-sm text-slate-600 sm:mt-10 sm:space-y-4 sm:text-base" stagger={0.08}>
+        {[
+          'Free to download, no hidden fees',
+          'Offline translation for 20+ languages',
+          'Available on iOS 14+ and Android 8+',
+        ].map((item) => (
+          <StaggerItem key={item}>
+            <div className="flex items-center gap-2">
+              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-100">
+                ✓
+              </div>
+              {item}
+            </div>
+          </StaggerItem>
+        ))}
+      </StaggerContainer>
+    </FadeIn>
 
-      <div className="mt-10 space-y-4 text-slate-600">
-
-        <div className="flex items-center gap-3">
-          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100">
-            ✓
-          </div>
-          Free to download, no hidden fees
-        </div>
-
-        <div className="flex items-center gap-3">
-          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100">
-            ✓
-          </div>
-          Offline translation for 20+ languages
-        </div>
-
-        <div className="flex items-center gap-3">
-          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100">
-            ✓
-          </div>
-          Available on iOS 14+ and Android 8+
-        </div>
-
-      </div>
-    </div>
-
-    {/* Right */}
-
-    <div className="flex justify-center lg:justify-end">
-      <Phone
-        type="conversation"
-        className="scale-[1.6]"
-      />
-    </div>
-
+    <FadeIn direction="right" delay={0.15} className="flex w-1/2 justify-end">
+      <Float>
+        <img
+          src={`${import.meta.env.BASE_URL}image/img2.png`}
+          alt="Turjman translation app"
+          className="w-full max-w-[850px] object-contain"
+        />
+      </Float>
+    </FadeIn>
   </div>
 </section>
       </div>

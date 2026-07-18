@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Languages, Mail } from "lucide-react";
 import {
   FaTwitter,
@@ -36,8 +37,17 @@ const socialLinks = [
 ];
 
 const Footer = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   return (
-    <footer className="mt-24 w-full bg-[#0B1739] text-slate-400">
+    <motion.footer
+      className={`w-full bg-[#0B1739] text-slate-400 ${isHomePage ? "" : "mt-24"}`}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
 
       <div className="mx-auto max-w-7xl px-6 py-16">
 
@@ -190,7 +200,7 @@ const Footer = () => {
 
       </div>
 
-    </footer>
+    </motion.footer>
   );
 };
 
