@@ -1,5 +1,5 @@
-import { useState } from 'react';
-// import { FadeIn } from '../components/Animations';
+import { useEffect, useState } from 'react';
+import { ArrowUp } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   CameraIcon,
@@ -160,11 +160,30 @@ function scrollToSection(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-export default function Index() {
+export default function Home() {
   const [openFaq, setOpenFaq] = useState(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
-  return (
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 320);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+ return (
+  <div id="top">
     <main className="min-h-screen overflow-hidden bg-linear-to-br from-slate-50 via-white to-blue-50 text-slate-900">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+  </div>
+
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <FadeInOnLoad delay={0.1}>
           <header className="flex items-center justify-between gap-4 py-6">
@@ -515,7 +534,23 @@ export default function Index() {
     </FadeIn>
   </div>
 </section>
-      </div>
+<button
+      className={`scroll-top-button ${
+        showScrollTop ? 'visible' : ''
+      }`}
+      onClick={() => {
+        document.getElementById('top')?.scrollIntoView({
+          behavior: 'smooth',
+        });
+      }}
+    >
+      <ArrowUp size={18} />
+    </button>
+           </div>
     </main>
-  );
+  </div>
+);
 }
+
+
+    

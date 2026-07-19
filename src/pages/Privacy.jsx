@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Ban, Languages, LockKeyhole, ShieldCheck } from 'lucide-react';
 import PageShell from '../components/PageShell';
@@ -45,6 +46,12 @@ const badges = [
 ];
 
 export default function Privacy() {
+   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    });
+  }, []);
 return (
    <PageShell
     noPadding
