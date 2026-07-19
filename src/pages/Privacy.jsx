@@ -46,11 +46,11 @@ const badges = [
 
 export default function Privacy() {
 return (
-  <PageShell
+   <PageShell
     noPadding
     className="bg-slate-100 text-slate-900"
     contentClassName="w-full"
-  >
+   >
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}

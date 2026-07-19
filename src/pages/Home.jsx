@@ -1,5 +1,5 @@
-﻿
 import { useState } from 'react';
+// import { FadeIn } from '../components/Animations';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   CameraIcon,
@@ -21,6 +21,7 @@ import {
 
 const features = [
   {
+    id: 'text-translation',
     title: 'Translate Any Text, Instantly',
     description: 'From a single word to full documents — 100+ languages, context-aware AI.',
     type: 'photo',
@@ -28,6 +29,7 @@ const features = [
     image: 'img1.png',
   },
   {
+    id: 'voice-mode',
     title: 'Speak. Listen. Understand.',
     description: 'Real-time voice recognition tuned for accents and natural speech patterns.',
     type: 'conversation',
@@ -35,6 +37,7 @@ const features = [
     image: 'img3.png',
   },
   {
+    id: 'camera-mode',
     title: 'Point, Shoot, Read Anything',
     description: 'AR overlay translates signs, menus, and labels instantly through your camera.',
     type: 'camera',
@@ -42,6 +45,7 @@ const features = [
     image: 'img4.png',
   },
   {
+    id: 'photo-translation',
     title: 'Unlock Text in Any Photo',
     description: 'Upload screenshots or photos — every word extracted and translated accurately.',
     type: 'photo',
@@ -49,6 +53,7 @@ const features = [
     image: 'img5.png',
   },
   {
+    id: 'live-conversation',
     title: 'Two Languages, One Conversation',
     description: 'Translate live discussions without losing the natural flow of the exchange.',
     type: 'conversation',
@@ -56,6 +61,7 @@ const features = [
     image: 'img6.png',
   },
   {
+    id: 'offline-packs',
     title: 'No Signal? No Problem.',
     description: 'Download language packs and keep translating anywhere, even without internet.',
     type: 'languages',
@@ -277,11 +283,12 @@ export default function Index() {
   delay={index * 0.05}
   direction={feature.side === 'right' ? 'left' : 'right'}
 >
-     <article
+ <article
+  id={feature.id}
   className={`grid grid-cols-2 items-center gap-3 sm:gap-6 md:gap-8 ${
     feature.side === 'right'
-      ? "[&>*:first-child]:order-2 [&>*:last-child]:order-1"
-      : ""
+      ? '[&>*:first-child]:order-2 [&>*:last-child]:order-1'
+      : ''
   }`}
 >
         <div className="space-y-2 sm:space-y-4">
@@ -512,4 +519,3 @@ export default function Index() {
     </main>
   );
 }
-
